@@ -1,0 +1,8 @@
+#install.packages("rsm")
+library("rsm")
+database_whole=read.csv('database_whole.csv')
+database_whole
+test <- coded.data(database_whole, database_whole$water.activity, thickness, pressure, diameter,H.D, time.for.removal)
+test <- coded.data(database_whole, x1 ~ water.activity*1, x2 ~ thickness*1,x3 ~ pressure*1,x4 ~ diameter*1,x5 ~ H.D*1,y ~ time.for.removal*1)
+test.rsm <- rsm(y~SO(x1, x2, x3, x4), data=test)
+summary(test.rsm)
