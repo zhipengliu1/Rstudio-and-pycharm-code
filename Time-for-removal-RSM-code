@@ -4,5 +4,5 @@ database_whole_remove=read.csv('database_whole_remove.csv')#Read file('database_
 database_whole_remove
 test <- coded.data(database_whole_remove, database_whole_remove$water.activity, thickness, pressure, diameter,H.D, time.for.removal)#Encode variables(water.activity, thickness, pressure, diameter,H.D, time.for.removal) in the database
 test <- coded.data(database_whole_remove, x1 ~ water.activity*1, x2 ~ thickness*1,x3 ~ pressure*1,x4 ~ diameter*1,x5 ~ H.D*1,y ~ time.for.removal*1)#Encode independent variables(water.activity, thickness, pressure, diameter,H.D) and dependent variables(time.for.removal)
-test.rsm <- rsm(y~SO(x1, x2, x3, x4, x5), data=test)#Use special function to construct rsm model formula(including "first-order" , "two-way interaction", "pure quadratic", and "second-order")
+test.rsm <- rsm(y~SO(x1, x2, x3, x4, x5), data=test)#Use special function SO to construct rsm model formula(including "first-order" , "two-way interaction", "pure quadratic", and "second-order")
 summary(test.rsm)
