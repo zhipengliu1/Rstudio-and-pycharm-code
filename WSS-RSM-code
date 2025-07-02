@@ -1,1 +1,8 @@
-
+getwd("F:/PythonLZP")#Get the current directory
+library("rsm")#install.packages("rsm")
+database_wss=read.csv('database_wss.csv')#Read file('database_wss.csv')
+database_wss
+test <- coded.data(database_wss, database_wss$ pressure, diameter,H.D, wss)#Encode variables( pressure, diameter,H.D, wss) in the database
+test <- coded.data(database_wss, x1 ~ pressure*1,x2 ~ diameter*1,x3 ~ H.D*1,y ~ time.for.removal*1)#Encode independent variables( pressure, diameter,H.D) and dependent variables(wss)
+test.rsm <- rsm(y~SO(x1, x2, x3), data=test)#Use special function SO to construct rsm model formula(including "first-order" , "two-way interaction", "pure quadratic", and "second-order")
+summary(test.rsm)
