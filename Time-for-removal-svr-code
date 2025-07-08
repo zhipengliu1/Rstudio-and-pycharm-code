@@ -1,1 +1,105 @@
+#Import the libraries for training model
+import pandas as pd#Import pandas library for reading csv file.
+from sklearn.model_selection import train_test_split#Used to segment data.
+import numpy as np#Import numpy data packets to store and process matrices.
+import warnings
+warnings.filterwarnings("ignore")
+from sklearn.model_selection import KFold, cross_val_score
+from sklearn.model_selection import GridSearchCV
+from sklearn.svm import SVR
 
+
+dataset = pd.read_csv(r'E:\PythonLZP\database_whole_remove.csv',encoding='UTF-8')#Import data
+print(dataset)
+n = dataset.shape[1]
+n = n-1
+
+# data:The dataset that needs to be segmented.
+# randomstate:Set a random seed to ensure that the same random number is generated every run.
+# testsize:The proportion of test set in the whole data set.
+
+testsize=np.array([0.1,0.2,0.3,0.4])#Proportion division of test set
+randomstate=np.linspace(1, 10000, 100, dtype=int)#Randomly select 100 integers from 1 to 10000.
+
+#Find the Cartesian product and get the complete permutation and combination.
+list_test = list(itertools.product(testsize,randomstate))
+columns=['testsize','randomstate']
+dataframe_test=pd.DataFrame(list_test,columns=columns)
+dataframe_test.insert(dataframe_test.shape[1], 'R2', 0)
+#print(dataframe_test)
+
+#gridsearch optimization
+cv_params = {'C': np.linspace(1, 1000, 100, dtype=int)}
+cv_params = {'gamma': np.linspace(0.01, 1, 100, dtype=float)}
+cv_params = {'epsilon': np.linspace(0.01, 1, 100, dtype=float)}
+
+print("Optimal value of parameters：:", gs.best_params_)
+print("Best model score:", gs.best_score_)
+        svr = SVR(kernel='rbf', C=1000, gamma=0.1,epsilon=0.1)
+
+#Cyclic assignment instruction
+cycle=0
+for i in dataframe_test['testsize']:
+    for j in dataframe_test['randomstate']:
+        train_set, test_set = train_test_split(dataset.values, test_size=i,
+                                               random_state=j)
+
+        x_train = train_set[:, 0:n]
+        y_train = train_set[:, n]
+        x_test = test_set[:, 0:n]
+        y_test = test_set[:, n]
+
+
+          # K-fold cross validation
+        n_folds = 10
+        kf = KFold(n_folds, shuffle=True, random_state=j).get_n_splits(x_train)
+        scores = cross_val_score(svr, x_train, y_train, scoring='r2',
+                                 cv=kf)
+        dataframe_test.iloc[cycle, 2] = scores.mean()
+        cycle = cycle + 1
+        print(cycle)
+        # print(scores.mean())
+
+Best_score_row=dataframe_test['R2'].argmax()#Gets the row number of the maximum value of a column.
+print(dataframe_test[Best_score_row:Best_score_row+1])
+
+train_set, test_set = train_test_split(dataset.values, test_size=0.3, random_state=9798)
+
+#Model training
+from sklearn.metrics import mean_squared_error, r2_score
+svr.fit(x_train,y_train)
+
+y_pred_train = svr.predict(x_train)
+#training set
+print(f"RMSE：{np.sqrt(mean_squared_error(y_pred_train, y_train))}")
+print(f"training setR^2：{r2_score(y_train, y_pred_train)}")
+
+y_pred_test = svr.predict(x_test)
+#test set
+print(f"RMSE：{np.sqrt(mean_squared_error(y_pred_test, y_test))}")
+print(f"test setR^2：{r2_score(y_test, y_pred_test)}")
+
+import pickle
+
+# save model to file
+pickle.dump(svr, open("E:\PythonLZP\svr.dat", "wb"))
+
+print(svr.get_params())
+
+#Establish csv files, and compare the predictive value with the experimental value.
+columns=['wateractivity','thickness','diameter','H/D','pressure']
+dataframe_test=pd.DataFrame(x_train,columns=columns)
+
+dataframe_test.insert(dataframe_test.shape[1], 'experimental value', (y_train))
+dataframe_test.insert(dataframe_test.shape[1], 'predictive value', (y_pred_train))
+
+dataframe_test.to_csv('E:\PythonLZP\WSSsvrtrainfinal.csv') 
+
+
+columns=['wateractivity','thickness','diameter','H/D','pressure']
+dataframe_test2=pd.DataFrame(x_test,columns=columns)
+
+dataframe_test2.insert(dataframe_test2.shape[1], 'experimental value', (y_test))
+dataframe_test2.insert(dataframe_test2.shape[1], 'predictive value', (y_pred_test))
+
+dataframe_test2.to_csv('E:\PythonLZP\WSSsvrfinal.csv') 
