@@ -6,7 +6,7 @@ from sklearn.neighbors import KNeighborsRegressor
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.model_selection import GridSearchCV
 
-dataset = pd.read_csv(r'E:\PythonLZP\WSS1.17.csv',encoding='UTF-8')#Import data
+dataset = pd.read_csv(r'E:\PythonLZP\database_wss.csv',encoding='UTF-8')#Import data
 print(dataset)
 n = dataset.shape[1]#Obtained column
 n = n-1
