@@ -119,12 +119,6 @@ dataframe_test2.to_csv('E:\PythonLZP\wssXGboosttestFull_ML_preidct.csv') #Obtain
 
 
 
-
-predpred = pd.read_csv(r'E:\PythonLZP\database_for_prediction.csv',encoding='UTF-8')
-y_predpred = regress_model.predict(predpred)
-
-
-
 import pickle
 
 # save model to file
