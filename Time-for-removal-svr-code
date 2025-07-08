@@ -82,7 +82,7 @@ print(f"test setR^2：{r2_score(y_test, y_pred_test)}")
 import pickle
 
 # save model to file
-pickle.dump(svr, open("E:\PythonLZP\svr.dat", "wb"))
+pickle.dump(svr, open("E:\PythonLZP\timesvr.dat", "wb"))
 
 print(svr.get_params())
 
@@ -93,7 +93,7 @@ dataframe_test=pd.DataFrame(x_train,columns=columns)
 dataframe_test.insert(dataframe_test.shape[1], 'experimental value', (y_train))
 dataframe_test.insert(dataframe_test.shape[1], 'predictive value', (y_pred_train))
 
-dataframe_test.to_csv('E:\PythonLZP\WSSsvrtrainfinal.csv') 
+dataframe_test.to_csv('E:\PythonLZP\timesvrtrainfinal.csv') 
 
 
 columns=['wateractivity','thickness','diameter','H/D','pressure']
@@ -102,4 +102,4 @@ dataframe_test2=pd.DataFrame(x_test,columns=columns)
 dataframe_test2.insert(dataframe_test2.shape[1], 'experimental value', (y_test))
 dataframe_test2.insert(dataframe_test2.shape[1], 'predictive value', (y_pred_test))
 
-dataframe_test2.to_csv('E:\PythonLZP\WSSsvrfinal.csv') 
+dataframe_test2.to_csv('E:\PythonLZP\timesvrfinal.csv') 
