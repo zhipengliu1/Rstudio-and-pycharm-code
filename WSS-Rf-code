@@ -91,7 +91,7 @@ print("Best model score:", gs.best_score_)
 Best_score_row=dataframe_test['R2'].argmax()#Gets the row number of the maximum value of a column.
 print(dataframe_test[Best_score_row:Best_score_row+1])
 
-
+train_set, test_set = train_test_split(dataset.values, test_size=0.1, random_state=7475)
 
 dataframe_test.to_csv('F:\PythonLZP\rf_testsize_randomstate.csv') 
 
