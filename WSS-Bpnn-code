@@ -63,7 +63,7 @@ print("Best model score:", gs.best_score_)
 
 Best_score_row=dataframe_test['R2'].argmax()#Gets the row number of the maximum value of a column.
 print(dataframe_test[Best_score_row:Best_score_row+1])
-dataframe_test.to_csv('E:\PythonLZP\Bpnn_testsize_randomstate.csv')
+dataframe_test.to_csv('E:\PythonLZP\wssBpnn_testsize_randomstate.csv')
 
 train_set, test_set = train_test_split(dataset.values, test_size=0.1, random_state=6950)
 
@@ -104,7 +104,3 @@ dataframe_test2.insert(dataframe_test2.shape[1], 'predictive value', (y_pred_tes
 
 dataframe_test2.to_csv('E:\PythonLZP\WSSBpnntestFull_ML_preidct.csv') 
 
-import pickle
-
-# save model to file 
-pickle.dump(bpnn, open("E:\PythonLZP\bpnn.dat", "wb"))
