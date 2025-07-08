@@ -89,7 +89,7 @@ dataframe_test=pd.DataFrame(x_train,columns=columns)
 dataframe_test.insert(dataframe_test.shape[1], 'experimental value', (y_train))
 dataframe_test.insert(dataframe_test.shape[1], 'predictive value', (y_pred_train))
 
-dataframe_test.to_csv('E:\PythonLZP\WSS1knntrainfinal.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
+dataframe_test.to_csv('E:\PythonLZP\time1knntrainfinal.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
 
 columns=['wateractivity','thickness','diameter','H/D','pressure']
 dataframe_test2=pd.DataFrame(x_test,columns=columns)
@@ -97,9 +97,9 @@ dataframe_test2=pd.DataFrame(x_test,columns=columns)
 dataframe_test2.insert(dataframe_test2.shape[1], 'experimental value', (y_test))
 dataframe_test2.insert(dataframe_test2.shape[1], 'predictive value', (y_pred_test))
 
-dataframe_test2.to_csv('E:\PythonLZP\WSS1knntestfinal.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
+dataframe_test2.to_csv('E:\PythonLZP\time1knntestfinal.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
 
 import pickle
 
 # save model to file 
-pickle.dump(knn, open("E:\PythonLZP\knn.dat", "wb"))
+pickle.dump(knn, open("E:\PythonLZP\timeknn.dat", "wb"))
