@@ -117,7 +117,7 @@ y_pred_test = gbr.predict(x_test)
 print(f"RMSE：{np.sqrt(mean_squared_error(y_pred_test, y_test))}")
 print(f"test setR^2：{r2_score(y_test, y_pred_test)}")
 
-columns=['diameter','H/D','pressure']
+columns=['wateractivity','thickness','diameter','H/D','pressure']
 dataframe_test=pd.DataFrame(x_train,columns=columns)
 
 dataframe_test.insert(dataframe_test.shape[1], 'experimental value', (y_train))
@@ -126,7 +126,7 @@ dataframe_test.insert(dataframe_test.shape[1], 'predictive value', (y_pred_train
 dataframe_test.to_csv('F:\PythonLZP\Gbrtrain0116.csv')#Obtain the relative position and save it in the path obtained by getwcd ().
 
 
-columns=['diameter','H/D','pressure']
+columns=['wateractivity','thickness','diameter','H/D','pressure']
 dataframe_test2=pd.DataFrame(x_test,columns=columns)
 
 dataframe_test2.insert(dataframe_test2.shape[1], 'experimental value', (y_test))
