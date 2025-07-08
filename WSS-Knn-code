@@ -102,4 +102,4 @@ dataframe_test2.to_csv('E:\PythonLZP\WSS1knntestfinal.csv') #Obtain the relative
 import pickle
 
 # save model to file 
-pickle.dump(knn, open("E:\PythonLZP\knn.dat", "wb"))
+pickle.dump(knn, open("E:\PythonLZP\wssknn.dat", "wb"))
