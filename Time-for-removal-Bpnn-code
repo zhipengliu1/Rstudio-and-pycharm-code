@@ -8,7 +8,7 @@ import itertools
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.neural_network import MLPRegressor
 
-dataset = pd.read_csv(r'E:\PythonLZP\database_wss.csv',encoding='UTF-8')#Import data
+dataset = pd.read_csv(r'E:\PythonLZP\database_whole_remove.csv',encoding='UTF-8')#Import data
 print(dataset)
 n = dataset.shape[1]
 n = n-1
