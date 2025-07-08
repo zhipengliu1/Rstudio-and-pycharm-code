@@ -63,6 +63,7 @@ for i in dataframe_test['testsize']:
 Best_score_row=dataframe_test['R2'].argmax()#Gets the row number of the maximum value of a column.
 print(dataframe_test[Best_score_row:Best_score_row+1])
 
+train_set, test_set = train_test_split(dataset.values, test_size=0.1, random_state=6764)
 
 #Model training
 from sklearn.metrics import mean_squared_error, r2_score
