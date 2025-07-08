@@ -79,7 +79,7 @@ print("Best model score:", gs.best_score_)
 
 Best_score_row=dataframe_test['R2'].argmax()#Gets the row number of the maximum value of a column.
 print(dataframe_test[Best_score_row:Best_score_row+1])
-dataframe_test.to_csv('E:\PythonLZP\XGboost_testsize_randomstate.csv') 
+dataframe_test.to_csv('E:\PythonLZP\wssXGboost_testsize_randomstate.csv') 
 
 
 train_set, test_set = train_test_split(dataset.values, test_size=0.1, random_state=5455)
@@ -106,7 +106,7 @@ dataframe_test=pd.DataFrame(x_train,columns=columns)
 dataframe_test.insert(dataframe_test.shape[1], 'experimental value', (y_train))
 dataframe_test.insert(dataframe_test.shape[1], 'predictive value', (y_pred_train))
 
-dataframe_test.to_csv('E:\PythonLZP\XGboosttrainFull_ML_preidct.csv')#Obtain the relative position and save it in the path obtained by getwcd ().
+dataframe_test.to_csv('E:\PythonLZP\wssXGboosttrainFull_ML_preidct.csv')#Obtain the relative position and save it in the path obtained by getwcd ().
 
 
 columns=['diameter','H/D','pressure']
@@ -115,7 +115,7 @@ dataframe_test2=pd.DataFrame(x_test,columns=columns)
 dataframe_test2.insert(dataframe_test2.shape[1], 'experimental value', (y_test))
 dataframe_test2.insert(dataframe_test2.shape[1], 'predictive value', (y_pred_test))
 
-dataframe_test2.to_csv('E:\PythonLZP\XGboosttestFull_ML_preidct.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
+dataframe_test2.to_csv('E:\PythonLZP\wssXGboosttestFull_ML_preidct.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
 
 
 
@@ -128,5 +128,5 @@ y_predpred = regress_model.predict(predpred)
 import pickle
 
 # save model to file
-pickle.dump(regress_model, open("E:\PythonLZP\XGboost.dat", "wb"))
+pickle.dump(regress_model, open("E:\PythonLZP\wssXGboost.dat", "wb"))
 
