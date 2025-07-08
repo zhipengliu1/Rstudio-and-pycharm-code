@@ -48,7 +48,7 @@ for i in dataframe_test['testsize']:
 # alpha:L1 regularization term about weight. Increasing this value will make the model more conservative.
 # lambda:L2 regularization term of weight. Increasing this value will make the model more conservative.
 
-cv_params = {'n_estimators': np.linspace(1000, 6000, 20, dtype=int)}
+cv_params = {'n_estimators': np.linspace(100, 600, 20, dtype=int)}
 cv_params = {'min_samples_split': np.linspace(1, 100, 100, dtype=int)}
 cv_params = {'min_samples_leaf': np.linspace(1, 100, 20, dtype=int)}
 cv_params = {'max_depth': np.linspace(1, 10, 10, dtype=int)}
@@ -56,10 +56,6 @@ cv_params = {'alpha': np.linspace(0.01, 1, 20, dtype=float)}
 cv_params = {'subsample': np.linspace(0.01, 1, 10, dtype=float)}
 cv_params = {'max_features': np.linspace(0.001, 1, 10, dtype=float)}
 cv_params = {'learning_rate': np.linspace(0.01, 1, 10, dtype=float)}
-cv_params = {'colsample_bytree': np.linspace(0.05, 10, 100, dtype=float)}
-cv_params = {'reg_alpha': np.linspace(0.05, 10, 100, dtype=float)}
-cv_params = {'reg_lambda': np.linspace(0.05, 0.2, 100, dtype=float)}
-cv_params = {'eta': np.linspace(0.05, 1, 100, dtype=float)}
 gs = GridSearchCV(gbr, cv_params,scoring = 'r2',#Using r2 as an evaluation index
  verbose=2,#Output one line of information each time each parameter combination is fitted.
  refit=True,#Re-fitting the model after finding the best parameters.
@@ -98,7 +94,7 @@ print("Best model score:", gs.best_score_)
 
 Best_score_row=dataframe_test['R2'].argmax()#Gets the row number of the maximum value of a column.
 print(dataframe_test[Best_score_row:Best_score_row+1])
-dataframe_test.to_csv('F:\PythonLZP\Gbr_testsize_randomstate.csv') 
+dataframe_test.to_csv('F:\PythonLZP\wssGbr_testsize_randomstate.csv') 
 
 train_set, test_set = train_test_split(dataset.values, test_size=0.1, random_state=3684)
 
@@ -123,7 +119,7 @@ dataframe_test=pd.DataFrame(x_train,columns=columns)
 dataframe_test.insert(dataframe_test.shape[1], 'experimental value', (y_train))
 dataframe_test.insert(dataframe_test.shape[1], 'predictive value', (y_pred_train))
 
-dataframe_test.to_csv('F:\PythonLZP\Gbrtrain0116.csv')#Obtain the relative position and save it in the path obtained by getwcd ().
+dataframe_test.to_csv('F:\PythonLZP\wssGbrtrain0116.csv')#Obtain the relative position and save it in the path obtained by getwcd ().
 
 
 columns=['diameter','H/D','pressure']
@@ -132,7 +128,7 @@ dataframe_test2=pd.DataFrame(x_test,columns=columns)
 dataframe_test2.insert(dataframe_test2.shape[1], 'experimental value', (y_test))
 dataframe_test2.insert(dataframe_test2.shape[1], 'predictive value', (y_pred_test))
 
-dataframe_test2.to_csv('F:\PythonLZP\Gbrtest0116.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
+dataframe_test2.to_csv('F:\PythonLZP\wssGbrtest0116.csv') #Obtain the relative position and save it in the path obtained by getwcd ().
 
 
 
@@ -141,4 +137,4 @@ dataframe_test2.to_csv('F:\PythonLZP\Gbrtest0116.csv') #Obtain the relative posi
 import pickle
 
 # save model to file 
-pickle.dump(gbr, open("F:\PythonLZP\Gbr.dat", "wb"))
+pickle.dump(gbr, open("F:\PythonLZP\wssGbr.dat", "wb"))
