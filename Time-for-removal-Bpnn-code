@@ -63,7 +63,7 @@ print("Best model score:", gs.best_score_)
 
 Best_score_row=dataframe_test['R2'].argmax()#Gets the row number of the maximum value of a column.
 print(dataframe_test[Best_score_row:Best_score_row+1])
-dataframe_test.to_csv('E:\PythonLZP\Bpnn_testsize_randomstate.csv')
+dataframe_test.to_csv('E:\PythonLZP\timeBpnn_testsize_randomstate.csv')
 
 train_set, test_set = train_test_split(dataset.values, test_size=0.3, random_state=9697)
 
@@ -84,7 +84,7 @@ print(f"test setR^2：{r2_score(y_test, y_pred_test)}")
 import pickle
 
 # save model to file 
-pickle.dump(Bpnn, open("E:\PythonLZP\wssBpnn.dat", "wb"))
+pickle.dump(Bpnn, open("E:\PythonLZP\timeBpnn.dat", "wb"))
 
 #Establish csv files, and compare the predictive value with the experimental value.
 columns=['wateractivity','thickness','diameter','H/D','pressure']
@@ -93,7 +93,7 @@ dataframe_test=pd.DataFrame(x_train,columns=columns)
 dataframe_test.insert(dataframe_test.shape[1], 'experimental value', (y_train))
 dataframe_test.insert(dataframe_test.shape[1], 'predictive value', (y_pred_train))
 
-dataframe_test.to_csv('E:\PythonLZP\WSSBpnntrainFull_ML_preidct.csv') 
+dataframe_test.to_csv('E:\PythonLZP\timeBpnntrainFull_ML_preidct.csv') 
 
 
 columns=['wateractivity','thickness','diameter','H/D','pressure']
@@ -102,9 +102,5 @@ dataframe_test2=pd.DataFrame(x_test,columns=columns)
 dataframe_test2.insert(dataframe_test2.shape[1], 'experimental value', (y_test))
 dataframe_test2.insert(dataframe_test2.shape[1], 'predictive value', (y_pred_test))
 
-dataframe_test2.to_csv('E:\PythonLZP\WSSBpnntestFull_ML_preidct.csv') 
+dataframe_test2.to_csv('E:\PythonLZP\timeBpnntestFull_ML_preidct.csv') 
 
-import pickle
-
-# save model to file 
-pickle.dump(bpnn, open("E:\PythonLZP\bpnn.dat", "wb"))
